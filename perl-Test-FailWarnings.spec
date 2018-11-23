@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-FailWarnings
 Version  : 0.008
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
 Summary  : 'Add test failures if warnings are caught'
@@ -76,7 +76,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Test/FailWarnings.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Test/FailWarnings.pm
 
 %files dev
 %defattr(-,root,root,-)
