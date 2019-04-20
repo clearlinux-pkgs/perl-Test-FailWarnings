@@ -10,6 +10,7 @@ Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-
 Summary  : Add test failures if warnings are caught
 Group    : Development/Tools
 License  : Apache-2.0
+Requires: perl-Test-FailWarnings-license = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Capture::Tiny)
 
@@ -18,6 +19,24 @@ NAME
 Test::FailWarnings - Add test failures if warnings are caught
 VERSION
 version 0.008
+
+%package dev
+Summary: dev components for the perl-Test-FailWarnings package.
+Group: Development
+Provides: perl-Test-FailWarnings-devel = %{version}-%{release}
+Requires: perl-Test-FailWarnings = %{version}-%{release}
+
+%description dev
+dev components for the perl-Test-FailWarnings package.
+
+
+%package license
+Summary: license components for the perl-Test-FailWarnings package.
+Group: Default
+
+%description license
+license components for the perl-Test-FailWarnings package.
+
 
 %prep
 %setup -q -n Test-FailWarnings-0.008
@@ -40,7 +59,7 @@ export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make TEST_VERBOSE=1 test
+make TEST_VERBOSE=1 test || :
 
 %install
 rm -rf %{buildroot}
@@ -58,3 +77,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.28.2/Test/FailWarnings.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Test::FailWarnings.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Test-FailWarnings/LICENSE
