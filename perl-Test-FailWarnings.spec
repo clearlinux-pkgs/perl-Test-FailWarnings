@@ -4,13 +4,14 @@
 #
 Name     : perl-Test-FailWarnings
 Version  : 0.008
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
-Summary  : Add test failures if warnings are caught
+Summary  : 'Add test failures if warnings are caught'
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: perl-Test-FailWarnings-license = %{version}-%{release}
+Requires: perl-Test-FailWarnings-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Capture::Tiny)
 
@@ -38,14 +39,24 @@ Group: Default
 license components for the perl-Test-FailWarnings package.
 
 
+%package perl
+Summary: perl components for the perl-Test-FailWarnings package.
+Group: Default
+Requires: perl-Test-FailWarnings = %{version}-%{release}
+
+%description perl
+perl components for the perl-Test-FailWarnings package.
+
+
 %prep
 %setup -q -n Test-FailWarnings-0.008
+cd %{_builddir}/Test-FailWarnings-0.008
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -55,7 +66,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -64,7 +75,7 @@ make TEST_VERBOSE=1 test || :
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Test-FailWarnings
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Test-FailWarnings/LICENSE
+cp %{_builddir}/Test-FailWarnings-0.008/LICENSE %{buildroot}/usr/share/package-licenses/perl-Test-FailWarnings/e188c4892bc1fbfced62c2299a2a24fd21098d81
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -77,7 +88,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Test/FailWarnings.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -85,4 +95,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Test-FailWarnings/LICENSE
+/usr/share/package-licenses/perl-Test-FailWarnings/e188c4892bc1fbfced62c2299a2a24fd21098d81
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Test/FailWarnings.pm
