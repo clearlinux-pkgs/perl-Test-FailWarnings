@@ -7,7 +7,7 @@
 #
 Name     : perl-Test-FailWarnings
 Version  : 0.008
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Test-FailWarnings-0.008.tar.gz
 Summary  : 'Add test failures if warnings are caught'
